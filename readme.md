@@ -12,8 +12,8 @@
 # Estructura de proyecto
 * Paginas:
   > Carpeta que contendrá las diferentes paginas que se pueden navegar en la app.
-  * TABS: Control de tabs que se les mostrarán a los estudiantes.
-  * TAB: Paginas que estarán disponible para los usuarios con perfil estudiante.
+  * Tabs: Control de tabs que se les mostrarán a los estudiantes.
+  * Tab: Paginas que estarán disponible para los usuarios con perfil estudiante.
   * Admin-Docente: Pagina que se les mostrará a los usuarios que se logeen con perfil docente.
 * Interfaces:
   > Carpeta que que alojará todas las interfaces que se estarán usando en el proyecto.
