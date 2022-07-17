@@ -15,6 +15,8 @@
   * Tabs: Control de tabs que se les mostrarán a los estudiantes.
   * Tab: Paginas que estarán disponible para los usuarios con perfil estudiante.
   * Admin-Docente: Pagina que se les mostrará a los usuarios que se logeen con perfil docente.
+  * Login: Pagina que posee logica para logearse en la aplicación y tambn logica para registrarse.
+  * Forgot-Password: Pagina para recuperar password.
 * Interfaces:
   > Carpeta que que alojará todas las interfaces que se estarán usando en el proyecto.
 * Componentes:
