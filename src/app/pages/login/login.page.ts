@@ -76,7 +76,7 @@ export class LoginPage implements OnInit {
       // this.uiservice.alertaInformativa('Credenciales no validas.');
       // console.log('Credenciales no validas.');
       //Esta navgación solo es por demo. aun no se implementa middlewares.
-      this.navCtrl.navigateRoot('/main/tabs/tab1', {
+      this.navCtrl.navigateRoot('/docente', {
         animated: true
       });
     }
@@ -101,7 +101,7 @@ export class LoginPage implements OnInit {
     // this.uiservice.alertaInformativa('Correo Electronico ya existe');
     // console.log('Correo Electronico ya existe');
           //Esta navgación solo es por demo. aun no se implementa middlewares.
-          this.navCtrl.navigateRoot('/main/tabs/tab1', {
+          this.navCtrl.navigateRoot('/docente', {
             animated: true
           });
   }

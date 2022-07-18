@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
+import { DetallesActividadComponent } from 'src/app/components/detalles-actividad/detalles-actividad.component';
+import { AgregarActividadComponent } from '../../components/agregar-actividad/agregar-actividad.component';
 
 @Component({
   selector: 'app-admin-docente',
@@ -7,6 +9,8 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./admin-docente.page.scss'],
 })
 export class AdminDocentePage implements OnInit {
+
+  loading: HTMLIonLoadingElement;
 
   // asignaturas: any[] = [
   //   {
@@ -39,7 +43,7 @@ export class AdminDocentePage implements OnInit {
     {
       id: 2,
       nombre: 'Healthy and Unhealthy test',
-      descripcion: 'Se peude estudiar la pagina 19-21-22-26-27-28 del libro Top Smart WorkBook',
+      descripcion: 'Se puede estudiar la pagina 19-21-22-26-27-28 del libro Top Smart WorkBook',
       asignatura: 'Ciencias Naturales',
       avatar: 'ciencias.jpg',
       iddocente: 2,
@@ -47,7 +51,21 @@ export class AdminDocentePage implements OnInit {
       grupo: '1° A',
       fecha: '17/07/2022',
       observaciones: 'sumativa', //[{tipo: 'sumativa', estado: false} , {tipo: 'formativa', estado: false}],
-      enlaces: 'www.google.com'
+      enlaces: 'https://www.google.com/'
+    },
+    {
+      id: 3,
+      nombre: 'Sumas de dos digitos',
+      // eslint-disable-next-line max-len
+      descripcion: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae, ipsam natus sunt accusamus optio suscipit, aspernatur officiis minus nostrum tempora qui quibusdam eligendi quas similique quasi saepe omnis incidunt.',
+      asignatura: 'Matematicas',
+      avatar: 'matematicas.jpg',
+      iddocente: 3,
+      docente: 'Alexander Agrazal',
+      grupo: '1° A',
+      fecha: '17/07/2022',
+      observaciones: 'formativa', //[{tipo: 'sumativa', estado: false} , {tipo: 'formativa', estado: false}],
+      enlaces: 'https://www.docademi.com/'
     }
   ];
 
@@ -90,7 +108,8 @@ export class AdminDocentePage implements OnInit {
   //   }
   // ];
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private modalCtrl: ModalController,
+  private loadingCtrl: LoadingController) {}
 
   ngOnInit() {
   }
@@ -109,8 +128,48 @@ export class AdminDocentePage implements OnInit {
     console.log('Borrar Actividad', actividad);
   }
 
-  verMas(actividad: any){
+  async agregarActividad(){
+    console.log('agregar Actividad');
+
+    const modal = await this.modalCtrl.create({
+      component: AgregarActividadComponent,
+      componentProps: {
+        titulo: 'Agregar Actividad'
+       }
+    });
+
+    await modal.present();
+    const {data} = await modal.onDidDismiss();
+    console.log(data);
+    if (data.nuevaActividad) {
+      this.actividades.push(data.nuevaActividad);
+    }
+  }
+
+  async verMas(actividad: any){
     console.log('verMas Actividad', actividad);
+    const modal = await this.modalCtrl.create({
+      component: DetallesActividadComponent,
+      componentProps: {
+        actividad
+       }
+    });
+
+    this.presentLoading('Por favor espere...');
+    // quitar timeout cuando se tenga servicio para crear familiar
+    setTimeout(async () => {
+      this.loading.dismiss();
+      await modal.present();
+    }, 1000);
+    // await modal.present();
+    await modal.onDidDismiss();
+  }
+
+  async presentLoading(message: string) {
+    this.loading = await this.loadingCtrl.create({
+      message
+    });
+    await this.loading.present();
   }
 
 
