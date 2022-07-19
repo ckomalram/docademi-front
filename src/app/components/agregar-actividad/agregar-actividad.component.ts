@@ -9,7 +9,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 })
 export class AgregarActividadComponent implements OnInit {
   @Input() titulo = 'Agregar Actividad++';
-  @Input() nuevaActividad = {
+  @Input() actividad = {
     id: 3,
     nombre: 'Sumas de dos digitos',
     // eslint-disable-next-line max-len
@@ -38,28 +38,28 @@ export class AgregarActividadComponent implements OnInit {
   }
 
    save(fRegister: NgForm){
-    console.log(this.nuevaActividad);
-    // const enlaces = this.nuevaActividad.enlaces.split('\n');
+    console.log(this.actividad);
+    // const enlaces = this.actividad.enlaces.split('\n');
     // console.log(enlaces);
     // logica para guardar Actividad
     if (fRegister.invalid) {
       return;
     }
-    this.nuevaActividad.avatar = `${this.nuevaActividad.asignatura}.jpg`;
+    this.actividad.avatar = `${this.actividad.asignatura}.jpg`;
     this.presentLoading('Por favor espere...');
     // quitar timeout cuando se tenga servicio para crear familiar
     setTimeout(() => {
       this.loading.dismiss();
       this.modalCtrl.dismiss({
         message: 'OK',
-        nuevaActividad: this.nuevaActividad
+        nuevaActividad: this.actividad
       });
     }, 1500);
 
     // enviar a pagina que llamo el modal
     // this.modalCtrl.dismiss({
     //   message: 'Actvidad Creada, proceder actualizar lista...',
-    //   nuevaActividad: this.nuevaActividad
+    //   actividad: this.actividad
     // });
   }
 

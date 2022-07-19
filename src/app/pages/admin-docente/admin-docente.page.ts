@@ -11,6 +11,7 @@ import { AgregarActividadComponent } from '../../components/agregar-actividad/ag
 export class AdminDocentePage implements OnInit {
 
   loading: HTMLIonLoadingElement;
+  valorBuscado = '';
 
   // asignaturas: any[] = [
   //   {
@@ -114,18 +115,40 @@ export class AdminDocentePage implements OnInit {
   ngOnInit() {
   }
 
+  buscar(){
+    console.log('Buscando valor');
+    console.log(this.valorBuscado);
+    this.actividades = this.actividades.filter(item => item.nombre.toLowerCase().includes(this.valorBuscado));
+    console.log(this.actividades);
+  }
+
   logout(){
     console.log('Saliendo de la aplicación');
     // debe ser llamado por un output event emmiter.
     this.navCtrl.navigateRoot('/login', {animated: true});
   }
 
-  editarActividad(actividad: any){
+  async editarActividad(actividad: any, i: any){
     console.log('Editar Actividad', actividad);
+    const modal = await this.modalCtrl.create({
+      component: AgregarActividadComponent,
+      componentProps: {
+        titulo: 'Editar Actividad',
+        actividad
+       }
+    });
+
+    await modal.present();
+    const {data} = await modal.onDidDismiss();
+    console.log(data);
+    if (data.nuevaActividad) {
+      this.actividades[i]= data.nuevaActividad;
+    }
   }
 
   borrarActividad(actividad: any){
     console.log('Borrar Actividad', actividad);
+    this.actividades = this.actividades.filter(item => item.nombre.toLowerCase() !== actividad.nombre.toLowerCase());
   }
 
   async agregarActividad(){
