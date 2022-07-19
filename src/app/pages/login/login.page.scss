@@ -1,30 +1,128 @@
-
-.mainSlide, .mainSlide ion-slide {
+.wrapper{
   width: 100%;
-  height: 100%;
 
-    /* Imagen centrada y colocada de forma elegante */
-    background-color: #0948b3!important;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
+  .logo{
+    font-size: 70px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+    color: #FFD700;
+    span{
+      color: #3171e0;
+    }
+  }
+  .tag_line{
+    color: gray;
+    text-align: center;
+    font-size: 12px;
+  }
+  .triangulo{
+    position: relative;
+    z-index: -1;
+    .triangulo_bottomr{
+      position: absolute;
+      right: 0;
+      top: 80px;
+      width: 0;
+      height: 0;
+      border-bottom: 200px solid #3171e0;
+      border-left: 200px solid transparent;
+    }
+    .triangulor{
+      position: absolute;
+      left: 0;
+      top: 200px;
+      width: 0;
+      height: 0;
+      border-top: 200px solid #FFD700;
+      border-right: 200px solid transparent;
+    }
+  }
+  .box{
+    width: 92%;
+    height: auto;
+    z-index: 999;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
+    background-color: #fff;
+
+    h2{
+      text-align: center;
+      padding-top: 15px !important;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #3171e0;
+    }
+
+    .btn_box{
+      display: flex;
+      margin-top: 20px;
+      font-size: 30px;
+      .btn_submit{
+        background-color: #FFD700;
+        padding: 20px 80px;
+        color: #fff;
+        font-weight: 600;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 30px;
+        border-radius: 10px;
+      }
+    }
+    p{
+      color: gray;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .social_login{
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      column-gap: 40px;
+
+      ion-icon{
+        font-size: 30px;
+      }
+      .facebook{
+        color: #3171e0;
+      }
+      .google{
+        color: #d73d32;
+      }
+      .insta{
+        color: #3f729b;
+      }
+    }
+  }
+
+  .bottom{
+    p{
+      text-align: center;
+      font-size: 15px;
+      color: gray;
+    }
+    .btn_bottom{
+      display: flex;
+      margin-bottom: 20px;
+      #loginbtn{
+        background-color: #fff;
+        padding: 20px 80px;
+        color: #3171e0;
+        font-size: 30px;
+        font-weight: 600;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #3171e0;
+      }
+    }
+  }
+
 }
-
-// img {
-//   width: 120px;
-// }
-
-.pick-avatar {
-  width: 80px;
-  opacity: 0.3;
-}
-
-.pick-avatar-seleccionado {
-  transition: opacity 0.5s linear;
-  opacity: 1 !important;
-}
-
-.fpassword{
-  color: #e2e1e1;
-}
-
