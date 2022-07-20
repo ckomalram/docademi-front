@@ -1,18 +1,17 @@
 .wrapper{
   width: 100%;
-
   .logo{
     font-size: 70px;
     margin-top: 10px;
     text-align: center;
     font-weight: 600;
-    color: #FFD700;
+    color: #a69012;
     span{
       color: #3171e0;
     }
   }
   .tag_line{
-    color: gray;
+    color: rgb(54, 51, 51);
     text-align: center;
     font-size: 12px;
   }
@@ -34,11 +33,11 @@
       top: 200px;
       width: 0;
       height: 0;
-      border-top: 200px solid #FFD700;
+      border-top: 200px solid #a69012;
       border-right: 200px solid transparent;
     }
   }
-  .box{
+  .boxregister{
     width: 92%;
     height: auto;
     z-index: 999;
@@ -64,14 +63,85 @@
       margin-top: 20px;
       font-size: 30px;
       .btn_submit{
-        background-color: #FFD700;
-        padding: 20px 80px;
+        background-color: #a69012;
+        padding: 10px 60px;
         color: #fff;
         font-weight: 600;
         margin-right: auto;
         margin-left: auto;
         font-size: 30px;
         border-radius: 10px;
+      }
+      .btn_submit:active{
+        background-color: #bdb89f;
+
+      }
+    }
+    p{
+      color: gray;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .social_login{
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      column-gap: 40px;
+
+      ion-icon{
+        font-size: 30px;
+      }
+      .facebook{
+        color: #3171e0;
+      }
+      .google{
+        color: #d73d32;
+      }
+      .insta{
+        color: #3f729b;
+      }
+    }
+  }
+  .boxlogin{
+    width: 92%;
+    height: auto;
+    z-index: 999;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
+    background-color: #fff;
+
+    h2{
+      text-align: center;
+      padding-top: 15px !important;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #3171e0;
+    }
+
+    .btn_box{
+      display: flex;
+      margin-top: 20px;
+      font-size: 30px;
+      .btn_submit{
+        background-color: #a69012;
+        padding: 10px 60px;
+        color: #fff;
+        font-weight: 600;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 30px;
+        border-radius: 10px;
+      }
+      .btn_submit:active{
+        background-color: #bdb89f;
+
       }
     }
     p{
@@ -113,7 +183,7 @@
       margin-bottom: 20px;
       #loginbtn{
         background-color: #fff;
-        padding: 20px 80px;
+        padding: 10px 60px;
         color: #3171e0;
         font-size: 30px;
         font-weight: 600;
@@ -121,6 +191,25 @@
         margin-left: auto;
         margin-right: auto;
         border: 1px solid #3171e0;
+      }
+      #loginbtn:active{
+        background-color: #a3b4d0;
+
+      }
+      #registerbtn{
+        background-color: #fff;
+        padding: 10px 60px;
+        color: #3171e0;
+        font-size: 30px;
+        font-weight: 600;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #3171e0;
+      }
+      #registerbtn:active{
+        background-color: #a3b4d0;
+
       }
     }
   }

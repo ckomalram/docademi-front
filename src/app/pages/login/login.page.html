@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="login_content">
   <div class="wrapper">
     <div class="logo">
       Doca<span>demi</span>
@@ -10,7 +10,7 @@
       <div class="triangulo_bottomr"></div>
       <div class="triangulor"></div>
     </div>
-    <div class="box">
+    <div class="boxregister" *ngIf="registerbtn">
       <h2>Crear Cuenta</h2><hr>
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
@@ -53,13 +53,51 @@
 
       </div>
     </div>
+    <div class="boxlogin" *ngIf="!registerbtn">
+      <h2>Login</h2><hr>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="text" placeholder="ingrese correo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" placeholder="ingrese password"></ion-input>
+      </ion-item>
+      <div class="btn_box">
+        <button (click)="login()" class="btn_submit">
+            Ingresar
+        </button>
+      </div>
+      <p>Ingresa utilizando alguna red social</p>
+
+      <div class="social_login">
+          <div class="facebook">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </div>
+          <div class="google">
+            <ion-icon name="logo-google"></ion-icon>
+          </div>
+          <div class="insta">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </div>
+
+      </div>
+    </div>
 
     <div class="bottom">
-      <p>¿Ya tienes cuenta?</p>
+      <p  *ngIf="registerbtn">¿Ya tienes cuenta?</p>
+      <p  *ngIf="!registerbtn">¿Aún no tienes cuenta?</p>
       <div class="btn_bottom">
-        <button id="loginbtn" type="submit" >
+        <button id="loginbtn"
+        *ngIf="registerbtn"
+        (click)="tootgleAction(false)" >
             Iniciar Sesión
         </button>
+      <button id="registerbtn"
+      *ngIf="!registerbtn"
+      (click)="tootgleAction(true)" >
+          Registrarse
+      </button>
       </div>
     </div>
   </div>
