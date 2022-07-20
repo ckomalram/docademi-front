@@ -43,18 +43,12 @@ export class LoginPage implements OnInit {
       const elemento = document.querySelector('.boxregister');
       const animation: Animation = this.animationCtrl.create()
       .addElement(elemento)
-      .keyframes([
-        { offset: 0, transform: 'scale(1)', opacity: '1' },
-        { offset: 0.5, transform: 'scale(1.2)', opacity: '0.5' },
-        { offset: 1, transform: 'scale(1.5)', opacity: '0.2' }
-      ]);
+      .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+      .fromTo('opacity', '1', '0.2');
       const animation2: Animation = this.animationCtrl.create()
       .addElement(document.querySelector('#loginbtn'))
-      .keyframes([
-        { offset: 0, transform: 'scale(1)', opacity: '1' },
-        { offset: 0.5, transform: 'scale(1.2)', opacity: '0.5' },
-        { offset: 1, transform: 'scale(1.5)', opacity: '0.2' }
-      ]);
+      .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+      .fromTo('opacity', '1', '0.2');
 
       const parent = this.animationCtrl.create()
       .duration(800)
@@ -65,19 +59,13 @@ export class LoginPage implements OnInit {
       const elemento = document.querySelector('.boxlogin');
       const animation: Animation = this.animationCtrl.create()
       .addElement(elemento)
-      .keyframes([
-        { offset: 0, transform: 'scale(1)', opacity: '1' },
-        { offset: 0.5, transform: 'scale(1.2)', opacity: '0.5' },
-        { offset: 1, transform: 'scale(1.5)', opacity: '0.2' }
-      ]);
+      .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
+      .fromTo('opacity', '1', '0.2');
 
       const animation2: Animation = this.animationCtrl.create()
       .addElement(document.querySelector('#registerbtn'))
-      .keyframes([
-        { offset: 0, transform: 'scale(1)', opacity: '1' },
-        { offset: 0.5, transform: 'scale(1.2)', opacity: '0.5' },
-        { offset: 1, transform: 'scale(1.5)', opacity: '0.2' }
-      ]);
+      .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
+      .fromTo('opacity', '1', '0.2');
 
       const parent = this.animationCtrl.create()
       .duration(800)
