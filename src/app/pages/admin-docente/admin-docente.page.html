@@ -1,6 +1,41 @@
-<ion-header [translucent]="true" class="ion-no-border">
+<ion-content>
+  <div class="main_content_div">
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <div class="user_div">
+      <div class="first_user_div">
+        <ion-label class="welcome">Hola!</ion-label>
+        <ion-label class="username">Komalram, Carlyle</ion-label>
+        <ion-label class="lastlogin">07/21/2022 1:05 a.m</ion-label>
+      </div>
+      <div class="user_photo" [style.backgroundImage]="'url(assets/example_profile.jpg)'">
+
+      </div>
+    </div>
+    <div class="content_div animated bounceInUp">
+      <ion-label class="hellolabel">Seleccione una opción: </ion-label>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6" (click)="irOpcion()" *ngFor="let item of [1,1,1,1,1,1] ">
+            <div class="col_div">
+              <img src="assets/asignatura/espanol.jpg" alt="">
+              <ion-label>Materia</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>
+
+
+<!-- <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar color="primary">
-  <!-- <app-logout></app-logout> -->
   <ion-buttons slot="end">
     <ion-button (click)="logout()"
                 color="danger">
@@ -13,7 +48,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <!-- Searchbar with value -->
   <ion-searchbar value="" [(ngModel)]="valorBuscado" (ionChange)="buscar()"></ion-searchbar>
   <ion-item *ngIf="actividades.length<1" color="danger">
     <ion-label>No se encontraron registros.</ion-label>
@@ -36,10 +70,6 @@
           <p class="ion-text text-small">{{ actividad.fecha}}</p>
           <p class="ion-text text-small">{{ actividad.observaciones}}</p>
         </ion-label>
-        <!-- <ion-label  class="ion-text text-small">
-          <p>{{ actividad.fecha}}</p>
-          <p>{{ actividad.observaciones}}</p>
-        </ion-label> -->
         <ion-label slot="end">
           <ion-img class="pick-ver" src="/assets/vermas.png" (click)="verMas(actividad)"></ion-img>
         </ion-label>
@@ -60,4 +90,4 @@
   <ion-toolbar>
     <ion-button expand="full" (click)="agregarActividad()">Agregar Actividad</ion-button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

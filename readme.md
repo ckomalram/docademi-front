@@ -24,3 +24,7 @@
   * agregar-actividad: Componente que contendrá un formulario para agregar una nueva actividad. Es utilizado por el docente.
   * avatar-selector: Componente para seleccionar un avatar al momento de registrarse.
   * detalles-actividad: Componente que muestra el detalle de una actividad. Esta acción es ejecutada con el botón ver mas, en el la actividad. Es utilizado por el docente.
+
+# Referencias
+* https://ionicframework.com/docs/utilities/animations
+* https://github.com/ckomalram/docademi-front

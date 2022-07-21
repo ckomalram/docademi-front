@@ -1,11 +1,166 @@
 
-.pick-ver {
-  width: 80px;
+ion-content{
+  --background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.main_content_div{
+  width: 100%;
+  ion-label{
+    display: block;
+    color: #2278e0;
+    text-align: left;
+  }
+  .menu_btn{
+    position: relative;
+   font-weight: 500;
+    top: 40px;
+    left: 10px;
+    // z-index: 1;
+  }
+  .user_div{
+    padding: 20px;
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);;
+    display: flex;
+    padding-top: 40px;
+    justify-content: space-between;
+
+    .first_user_div{
+      padding-top: 35px;
+      .welcome{
+        font-size: 18px;
+        font-weight: 500;
+        color: white;
+      }
+      .username{
+        font-size: 24px;
+        font-weight: 600;
+        color: white;
+      }
+      .lastlogin{
+        font-size: 16px;
+        font-weight: 400;
+        color: white;
+      }
+    }
+    .user_photo{
+      height: 100px;
+      width: 80px;
+      border: 2px solid white;
+      background-position: top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 7px;
+    }
   }
 
+  .content_div{
+    background: white;
+    width: 100%;
+    border-top-right-radius: 75px;
+    // margin-top: -90px;
+    padding-top: 20px;
 
-  .text-small{
-    font-size: 12px;
+    .hellolabel{
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 10px;
+      padding-left: 5px;
+      margin-top: 10px;
+      color: var(--ion-color-warning);
+    }
+
+    ion-grid{
+      padding:0px;
+    }
+
+    .col_div{
+      display: flex;
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 140px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+      border-radius: 5px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border-top-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+
+      img{
+        width: 70px;
+        border-radius: 50px;
+      }
+      ion-label{
+        color: var(--ion-color-warning);
+        margin-top: 5px;
+      }
+    }
+
   }
+}
+
+.animated{
+  -webkit-animation-duration: 5s;
+  animation: duration 5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes bounceInUp{
+  0%{
+    opacity: 0;
+    -webkit-transform: translateY(2000px);
+  }
+  60%{
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80%{
+
+    -webkit-transform: translateY(10px);
+  }
+  100%{
+
+    -webkit-transform: translateY(0);
+  }
+}
+
+.bounceInUp{
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+}
+
+@keyframes bounceInUp{
+  0%{
+    opacity: 0;
+    -webkit-transform: translateY(2000px);
+  }
+  60%{
+    opacity: 1;
+    -webkit-transform: translateY(-30px);
+  }
+  80%{
+
+    -webkit-transform: translateY(10px);
+  }
+  100%{
+
+    -webkit-transform: translateY(0);
+  }
+}
+
+/*CSS de listado de actividades*/
+// .pick-ver {
+//   width: 80px;
+//   }
+
+
+//   .text-small{
+//     font-size: 12px;
+//   }
 
 
