@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'docente'
+    redirectTo: 'login'
     // redirectTo: 'main/tabs/tab1'
   },
   {

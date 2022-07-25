@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AdminDocentePage
+  },
+  {
+    path: 'actividades',
+    loadChildren: () => import('./actividades/actividades.module').then( m => m.ActividadesPageModule)
   }
 ];
 
