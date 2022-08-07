@@ -1,0 +1,36 @@
+MVP:
+1. Pagina de registro
+2. Pagina de login
+3. Menu docente
+  3.1 Acción de log out
+  3.2 Nombre de profesor
+  3.3 Ultima hora de sesión
+  3.4 Foto de perfil (Agregada en el admin al momento de crear al docente) o...:
+    3.4.1 Acción de seleccionar foto de perfil
+    3.4.2 Permisos a galería y camara.
+  3.5 Listado de asignaturas del docente.
+4. Pagina de Actividades (mostradas por asignatura escogida en 3.5)
+  4.1 Barra para buscar (filtrar por nombre, tema, grado)
+  4.2 Acción Editar actividad.
+  4.3 Acción Borrar Actividad.
+  4.4 Acción Ver Más.
+    4.4.1 Acción compartir actividad (detalle individual d la actividad).
+    4.4.2 Acción de salir de Ver Mas.
+  4.5 Acción de agregar Actividad
+    4.5.1 Input asignatura parametrizado (según lo asignado al profesor).
+    4.5.2 Input Obeservación parametrizado
+    4.5.3 Input Grado parametrizado.
+    4.5.4 Botón guardar actividad.
+    4.5.5 Boton cancelar proceso de crear activudad.
+  4.6 Botón de Exportar actividades en pdf.(Investigar librería para pdf).
+5. Menu Estudiante/Acudiente
+  5.1 Acción de log out
+  5.2 Nombre de Estudiante/Acudiente
+  5.3 Ultima hora de sesión
+  5.4 Foto de (Agregada en el admin al momento de crear al Estudiante/Acudiente) o...:
+    5.4.1 Acción de seleccionar foto de perfil
+    5.4.2 Permisos a galería y camara.
+  5.5 Listado de asignaturas del Estudiante.
+  5.6 Acción de exportar todas las actividades en pdf de todas las asignaturas con formato vistoso horizontal.
+  5.7 Acción ver actividad por asignatura.
+    5.7.1 Acción de exportar todas las actividades en pdf de la asignatura seleccionada.
