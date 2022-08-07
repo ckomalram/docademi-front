@@ -34,3 +34,4 @@ MVP:
   5.6 Acción de exportar todas las actividades en pdf de todas las asignaturas con formato vistoso horizontal.
   5.7 Acción ver actividad por asignatura.
     5.7.1 Acción de exportar todas las actividades en pdf de la asignatura seleccionada.
+    5.7.2  Agregar check en la actividad para llevar control de cuales se han hecho o pasado la fecha.

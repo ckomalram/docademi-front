@@ -8,6 +8,8 @@ import { AdminDocentePageRoutingModule } from './admin-docente-routing.module';
 
 import { AdminDocentePage } from './admin-docente.page';
 import { ComponentsModule } from '../../components/components.module';
+import {PDFGenerator} from '@ionic-native/pdf-generator/ngx';
+
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { ComponentsModule } from '../../components/components.module';
     IonicModule,
     AdminDocentePageRoutingModule,ComponentsModule
   ],
+  providers: [PDFGenerator],
   declarations: [AdminDocentePage]
 })
 export class AdminDocentePageModule {}
