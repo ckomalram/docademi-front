@@ -9,6 +9,7 @@ import { AdminDocentePageRoutingModule } from './admin-docente-routing.module';
 import { AdminDocentePage } from './admin-docente.page';
 import { ComponentsModule } from '../../components/components.module';
 import {PDFGenerator} from '@ionic-native/pdf-generator/ngx';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {PDFGenerator} from '@ionic-native/pdf-generator/ngx';
     CommonModule,
     FormsModule,
     IonicModule,
-    AdminDocentePageRoutingModule,ComponentsModule
+    AdminDocentePageRoutingModule,ComponentsModule, PipesModule
   ],
   providers: [PDFGenerator],
   declarations: [AdminDocentePage]

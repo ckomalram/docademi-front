@@ -12,10 +12,7 @@ import {PDFGenerator, PDFGeneratorOptions} from '@ionic-native/pdf-generator/ngx
 })
 export class AdminDocentePage implements OnInit {
 
-  /*PDF logic */
-    datapdf: any[] = [];
-    html  ='';
-  /*End PDF logic */
+
 
   loading: HTMLIonLoadingElement;
   valorBuscado = '';
@@ -98,21 +95,5 @@ export class AdminDocentePage implements OnInit {
     // debe ser llamado por un output event emmiter.
     this.navCtrl.navigateRoot('/login', {animated: true});
   }
-
-  generatePdf(){
-    const  options: PDFGeneratorOptions= {
-      type: 'share',
-      landscape: 'landscape',
-      fileName: 'actividades.pdf',
-      documentSize: 'A3'
-    };
-
-    this.html = document.getElementById('pdfagenda').innerHTML;
-    // console.log(this.html);
-    this.pdfGenerator.fromData(this.html,options);
-
-  }
-
-
 
 }

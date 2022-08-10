@@ -3,6 +3,8 @@ import { LoadingController, ModalController, NavController } from '@ionic/angula
 import { AgregarActividadComponent } from 'src/app/components/agregar-actividad/agregar-actividad.component';
 import { DetallesActividadComponent } from 'src/app/components/detalles-actividad/detalles-actividad.component';
 import { DocenteService } from 'src/app/services/docente.service';
+import {PDFGenerator, PDFGeneratorOptions} from '@ionic-native/pdf-generator/ngx';
+
 
 @Component({
   selector: 'app-actividades',
@@ -12,6 +14,11 @@ import { DocenteService } from 'src/app/services/docente.service';
 export class ActividadesPage implements OnInit {
   loading: HTMLIonLoadingElement;
   valorBuscado = '';
+
+    /*PDF logic */
+    datapdf: any[] = [];
+    html  ='';
+  /*End PDF logic */
   actividades: any[]=[
     {
       id: 1,
@@ -58,7 +65,7 @@ export class ActividadesPage implements OnInit {
   constructor(private navCtrl: NavController,
     private modalCtrl: ModalController,
   private docenteService: DocenteService,
-  private loadingCtrl: LoadingController) { }
+  private loadingCtrl: LoadingController, private pdfGenerator: PDFGenerator) { }
 
   ngOnInit() {
 
@@ -138,6 +145,20 @@ export class ActividadesPage implements OnInit {
       message
     });
     await this.loading.present();
+  }
+
+  generatePdf(){
+    const  options: PDFGeneratorOptions= {
+      type: 'share',
+      landscape: 'landscape',
+      fileName: 'actividades.pdf',
+      documentSize: 'A3'
+    };
+
+    this.html = document.getElementById('pdfagenda').innerHTML;
+    // console.log(this.html);
+    this.pdfGenerator.fromData(this.html,options);
+
   }
 
 }

@@ -1,28 +1,34 @@
-MVP:
-1. Pagina de registro
-2. Pagina de login
-3. Menu docente
-  3.1 Acción de log out
-  3.2 Nombre de profesor
-  3.3 Ultima hora de sesión
-  3.4 Foto de perfil (Agregada en el admin al momento de crear al docente) o...:
-    3.4.1 Acción de seleccionar foto de perfil
-    3.4.2 Permisos a galería y camara.
-  3.5 Listado de asignaturas del docente.
-4. Pagina de Actividades (mostradas por asignatura escogida en 3.5)
-  4.1 Barra para buscar (filtrar por nombre, tema, grado)
-  4.2 Acción Editar actividad.
-  4.3 Acción Borrar Actividad.
-  4.4 Acción Ver Más.
-    4.4.1 Acción compartir actividad (detalle individual d la actividad).
-    4.4.2 Acción de salir de Ver Mas.
-  4.5 Acción de agregar Actividad
-    4.5.1 Input asignatura parametrizado (según lo asignado al profesor).
-    4.5.2 Input Obeservación parametrizado
-    4.5.3 Input Grado parametrizado.
-    4.5.4 Botón guardar actividad.
-    4.5.5 Boton cancelar proceso de crear activudad.
-  4.6 Botón de Exportar actividades en pdf.(Investigar librería para pdf).
+MVP Front:
+1. Pagina de registro ---> LISTO
+2. Pagina de login ---> LISTO
+3. Menu docente ---> LISTO
+  3.1 Acción de log out ---> LISTO
+  3.2 Nombre de profesor ---> LISTO
+  3.3 Ultima hora de sesión ---> LISTO
+  3.4 Foto de perfil (Agregada en el admin al momento de crear al docente) o...: ---> LISTO
+    3.4.1 Acción de seleccionar foto de perfil  ---> NO CONTEMPLADO
+    3.4.2 Permisos a galería y camara. ---> NO CONTEMPLADO
+
+    ::: Preferiblemente que se cargue la foto cuando se crea al docente, asi llevamos un control de la foto de perfil.
+
+  3.5 Listado de asignaturas del docente. ---> LISTO
+4. Pagina de Actividades (mostradas por asignatura escogida en 3.5) ---> LISTO
+  4.1 Barra para buscar (filtrar por nombre, tema, grado) ---> LISTO
+  4.2 Acción Editar actividad. ---> LISTO
+  4.3 Acción Borrar Actividad. ---> LISTO
+  4.4 Acción Ver Más. ---> LISTO
+    4.4.1 Acción compartir actividad (detalle individual de la actividad). ---> LISTO
+    4.4.2 Acción de salir de Ver Mas.  ---> LISTO
+  4.5 Acción de agregar Actividad  ---> LISTO
+    4.5.1 Input asignatura   (según lo asignado al profesor). ---> LISTO
+    4.5.2 Input Obeservación    ---> LISTO
+    4.5.3 Input Grado  . ---> LISTO
+    4.5.4 Botón guardar actividad. ---> LISTO
+    4.5.5 Boton cancelar proceso de crear activudad. ---> LISTO
+
+    ::: sE TIENEN QUE PARAMETRIZAR PUNTOS 1,2,3
+
+  4.6 Botón de Exportar actividades en pdf.(Investigar librería para pdf). ---> LISTO
 5. Menu Estudiante/Acudiente
   5.1 Acción de log out
   5.2 Nombre de Estudiante/Acudiente

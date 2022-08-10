@@ -4,15 +4,20 @@
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Actividades-{{docenteService.asignaturaSeleccionada.nombre}}</ion-title>
+    <ion-buttons slot="end"  >
+      <ion-button (click)="generatePdf()" color="light" >
+        <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-searchbar value="" [(ngModel)]="valorBuscado" (ionChange)="buscar()"></ion-searchbar>
+  <ion-searchbar value="" [(ngModel)]="valorBuscado"></ion-searchbar>
   <ion-item *ngIf="actividades.length<1" color="danger">
     <ion-label>No se encontraron registros.</ion-label>
   </ion-item>
   <ion-list>
-    <ion-item-sliding *ngFor="let actividad of actividades;let i = index">
+    <ion-item-sliding *ngFor="let actividad of actividades | filterby:valorBuscado">
       <ion-item-options side="start">
         <ion-item-option color="secondary" (click)="editarActividad(actividad,i)">
           <ion-icon slot="icon-only" name="pencil"></ion-icon>
@@ -42,6 +47,33 @@
     </ion-item-sliding>
 
   </ion-list>
+
+      <!-- CONTENEDOR QUE MUESTRA EL PDF -->
+      <div id="pdfagenda" hidden="true">
+        <h2 style="text-align: center;justify-content: center;">Instituto Docademi </h2>
+        <div style="display: flex;flex-direction: row;justify-content: space-between;">
+          <h3> Grupo: <b>1er A</b></h3>
+          <h2> prueba pdf generator</h2>
+          <h3> 08/06/2022 11:05 p.m</h3>
+        </div>
+
+        <div
+          style="display: flex;flex-flow: row wrap; justify-content: space-around; padding: 0; margin: 0; list-style: none; gap: 40px 20px;">
+          <div
+          *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]; let i = index"
+            style="background: aliceblue;padding: 3px; width: 450px; height: 350px;margin-top: 30px;margin-bottom: 30px; color: black; font-weight: bold;font-size: 18px; text-align: left; border-color: black;border: 1cm;">
+            <p> Fecha(dd/mm/yyyy): 06/08/2022</p>
+            <p> Materia: Español Alexander Agrazal - 6 agosto 2022 11:42 p.m</p>
+            <p> Tema: Silaba Tonica</p>
+            <p> Actividades: Se empezará el tema de silaba tonica y trabajarpan en libro de texto.</p>
+
+            <p> Evaluación: Sumativa</p>
+            <p> Observaciones: Detalles acerca de la actividad...</p>
+            <p>Enlaces: https://google.com - {{ i }}- </p>
+          </div>
+        </div>
+      </div>
+      <!-- fIN CONTENEDOR QUE MUESTRA EL PDF -->
 
 </ion-content>
 
