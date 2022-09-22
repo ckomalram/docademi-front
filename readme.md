@@ -24,6 +24,11 @@
   * agregar-actividad: Componente que contendrá un formulario para agregar una nueva actividad. Es utilizado por el docente.
   * avatar-selector: Componente para seleccionar un avatar al momento de registrarse.
   * detalles-actividad: Componente que muestra el detalle de una actividad. Esta acción es ejecutada con el botón ver mas, en el la actividad. Es utilizado por el docente.
+* Servicios:
+  > Carpeta que alojara todos los servicios que hacen interacción con el API de docademi.
+  * ui : Servicio para enviar alertas.
+  * user: Servicio que contendrá la logica para login y register de un usuario. Tambien para validar si el token aún es valido antes de ejecutar una acción.
+  * docente: Servicio que contendrá las acciones del docente. CRUD de Clases, actividades.
 
 # Referencias
 * https://ionicframework.com/docs/utilities/animations
