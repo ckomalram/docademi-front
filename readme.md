@@ -1,3 +1,10 @@
+# Estructura:
+node >= v16.17.0
+npm  >= 8.19.2
+Angular cli >= 14.0.0
+Ionic cli >=  6.20.1
+
+
 # Comandos Utiles:
 > Para ejecutar en maquina con proyecto local:
 * npm i
