@@ -33,7 +33,7 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Perfil</ion-label>
-          <ion-select placeholder="Seleccione perfil" formControlName="v_profile">
+          <ion-select placeholder="Seleccione perfil" formControlName="vprofile">
             <ion-select-option value="docente">Docente</ion-select-option>
             <ion-select-option value="estudiante">Estudiante</ion-select-option>
           </ion-select>
@@ -50,7 +50,7 @@
           <p *ngIf="campoNoValidoRegister('password')">* El password es Obligatorio</p>
           <p *ngIf="campoNoValidoRegister('email')">* El email es Obligatorio y con formato valido. "example@example.ex"</p>
           <p *ngIf="campoNoValidoRegister('name')">* El nombre es Obligatorio y minimo 4 caracteres</p>
-          <p *ngIf="campoNoValidoRegister('v_profile')">* El perfil es Obligatorio.</p>
+          <p *ngIf="campoNoValidoRegister('vprofile')">* El perfil es Obligatorio.</p>
           <p *ngIf="passwordNoNalido()">* Las contraseñas deben ser iguales</p>
         </div>
       </div>

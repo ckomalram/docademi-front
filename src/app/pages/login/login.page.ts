@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AnimationController,Animation, NavController } from '@ionic/angular';
+import { AnimationController, Animation, NavController } from '@ionic/angular';
 import { UserService } from '../../services/user.service';
 import { UiService } from '../../services/ui.service';
 
@@ -16,8 +16,8 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
 
-  imgfondo ='/assets/login-bg.jpg';
-  registerbtn=true;
+  imgfondo = '/assets/login-bg.jpg';
+  registerbtn = true;
 
   constructor(private navCtrl: NavController,
     private animationCtrl: AnimationController,
@@ -25,28 +25,27 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder,
     private uiservice: UiService,
     // private storage: Storage
-    ) {
-        this.loginForm= this.fb.group({
-          email: [ '', [Validators.required, Validators.email]] ,
-          password: ['', [Validators.required]] ,
-        });
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
 
-        this.registerForm= this.fb.group({
-          name: [ '', [Validators.required, Validators.min(4)]] ,
-          email: [ '', [Validators.required, Validators.email]] ,
-          password: ['', [Validators.required]] ,
-          password2: ['', [Validators.required]] ,
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          v_profile: ['', [Validators.required]] ,
-        }, {
-          validators: this.passwordIguales('password', 'password2')
-        });
-      }
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.min(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      password2: ['', [Validators.required]],
+      vprofile: ['', [Validators.required]],
+    }, {
+      validators: this.passwordIguales('password', 'password2')
+    });
+  }
 
   ngOnInit() {
   }
 
-  async login(){
+  async login() {
 
     this.formSubmitted = true;
     if (this.loginForm.invalid) {
@@ -60,21 +59,28 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot('/docente', {
         animated: true
       });
-    }else {
+    } else {
       this.uiservice.alertaInformativa('Credenciales no validas.');
     }
 
   }
 
-  async register(){
-    this.registerFormSubmitted= true;
+  async register() {
+    this.registerFormSubmitted = true;
     console.log(this.registerForm);
 
     if (this.registerForm.invalid) {
       return;
     }
-
     //TODO: Integracion con API para registrar usuario.
+    const response = await this.userService.register(this.registerForm.value);
+    //TODO: Manejo de perfiles para redireccionar.
+    if (response) {
+      //navegar a tabs
+      this.navCtrl.navigateRoot('/docente', {
+        animated: true
+      });
+    }
   }
 
   //Para mostrar mensaje.
@@ -82,7 +88,8 @@ export class LoginPage implements OnInit {
     const pass1 = this.registerForm.get('password')?.value;
     const pass2 = this.registerForm.get('password2')?.value;
 
-    if (pass1 !== pass2 && this.registerFormSubmitted) {
+    if ((pass1 !== pass2 && this.registerFormSubmitted)
+      || (pass1 !== pass2 && this.registerForm.get('password2')?.touched)) {
       return true;
     } else {
       return false;
@@ -113,48 +120,49 @@ export class LoginPage implements OnInit {
   }
 
   campoNoValidoRegister(campo: string): boolean {
-    if (this.registerForm.get(campo)?.invalid && this.registerFormSubmitted) {
+    if ((this.registerForm.get(campo)?.invalid && this.registerFormSubmitted)
+      || (this.registerForm.get(campo)?.invalid && this.registerForm.get(campo)?.touched)) {
       return true;
     } else {
       return false;
     }
   }
 
-  async tootgleAction(action: boolean){
+  async tootgleAction(action: boolean) {
 
 
     if (!action) {
       const elemento = document.querySelector('.boxregister');
       const animation: Animation = this.animationCtrl.create()
-      .addElement(elemento)
-      .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
-      .fromTo('opacity', '1', '0.2');
+        .addElement(elemento)
+        .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+        .fromTo('opacity', '1', '0.2');
       const animation2: Animation = this.animationCtrl.create()
-      .addElement(document.querySelector('#loginbtn'))
-      .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
-      .fromTo('opacity', '1', '0.2');
+        .addElement(document.querySelector('#loginbtn'))
+        .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+        .fromTo('opacity', '1', '0.2');
 
       const parent = this.animationCtrl.create()
-      .duration(800)
-      .addAnimation([animation, animation2]);
-      await  parent.play();
+        .duration(800)
+        .addAnimation([animation, animation2]);
+      await parent.play();
 
-    }else{
+    } else {
       const elemento = document.querySelector('.boxlogin');
       const animation: Animation = this.animationCtrl.create()
-      .addElement(elemento)
-      .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
-      .fromTo('opacity', '1', '0.2');
+        .addElement(elemento)
+        .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
+        .fromTo('opacity', '1', '0.2');
 
       const animation2: Animation = this.animationCtrl.create()
-      .addElement(document.querySelector('#registerbtn'))
-      .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
-      .fromTo('opacity', '1', '0.2');
+        .addElement(document.querySelector('#registerbtn'))
+        .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
+        .fromTo('opacity', '1', '0.2');
 
       const parent = this.animationCtrl.create()
-      .duration(800)
-      .addAnimation([animation, animation2]);
-      await  parent.play();
+        .duration(800)
+        .addAnimation([animation, animation2]);
+      await parent.play();
     }
 
     this.registerbtn = action;
