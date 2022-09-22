@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AnimationController,Animation, IonSlides, NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/interfaces';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,27 +12,34 @@ import { Usuario } from 'src/app/interfaces/interfaces';
 export class LoginPage implements OnInit {
 
   // @ViewChild('slidePrincipal') slidePrincipal: IonSlides;
+  formSubmitted = false;
+  loginForm: FormGroup;
 
-  loginUser = {
-    email: 'ckomalram@gmail.com',
-    password: 'ckomalram',
-    nombre: 'Carlyle',
-    profile: 'admin'
-  };
+  // loginUser = {
+  //   email: '',
+  //   password: ''
+  // };
 
   registerUser: Usuario = {
-    email: 'ckomalram@gmail.com',
-    password: 'ckomalram',
+    email: 'glaw14@gmail.com',
+    password: '12345678',
     nombre: 'Carlyle',
-    profile: 'student'
+    profile: 'docente'
   };
 
   imgfondo ='/assets/login-bg.jpg';
   registerbtn=true;
 
   constructor(private navCtrl: NavController,
-    private animationCtrl: AnimationController
-    ) {  }
+    private animationCtrl: AnimationController,
+    private userService: UserService,
+    private fb: FormBuilder
+    ) {
+        this.loginForm= this.fb.group({
+          email: [ '', [Validators.required, Validators.email]] ,
+          password: ['', [Validators.required]] ,
+        });
+      }
 
   ngOnInit() {
   }
@@ -79,36 +87,22 @@ export class LoginPage implements OnInit {
   // ionViewDidEnter() {
   //   this.slidePrincipal.lockSwipes(true);
   // }
-
-  // mostrarLogin(){
-  //   this.slidePrincipal.lockSwipes(false);
-  //   this.slidePrincipal.slideTo(0);
-  //   this.slidePrincipal.lockSwipes(true);
-
-  // }
-
-  // mostrarRegistro(){
-  //   this.slidePrincipal.lockSwipes(false);
-  //   this.slidePrincipal.slideTo(1);
-  //   this.slidePrincipal.lockSwipes(true);
-
-  // }
-
   // chooseAvatar(event: string){
   //   console.log(event);
   //   this.registerUser.avatar=event;
   // }
-
   async login(){
 
-    this.navCtrl.navigateRoot('/docente', {
-      animated: true
-    });
-    // console.log(fLogin.valid);
-    // console.log(this.loginUser);
-    // if (fLogin.invalid) {
-    //   return;
-    // }
+    // this.navCtrl.navigateRoot('/docente', {
+    //   animated: true
+    // });
+    this.formSubmitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const valido = await this.userService.login(this.loginForm.value);
+    console.log('Estado de login', valido);
 
     // // const valido = await this.usuarioService.login(this.loginUser.email,this.loginUser.password);
     // const valido = this.loginUser.profile;
@@ -127,6 +121,15 @@ export class LoginPage implements OnInit {
     //   });
     // }
 
+  }
+
+  campoNoValido(campo: string): boolean {
+
+    if (this.loginForm.get(campo)?.invalid && this.formSubmitted) {
+      return true;
+    } else {
+      return false;
+    }
   }
   // async register(fRegister: NgForm){
   // console.log(fRegister);
