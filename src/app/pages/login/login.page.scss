@@ -50,6 +50,12 @@
     box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
     background-color: #fff;
 
+    .text-error-form{
+      p{
+        color: red;
+        text-align: left;
+      }
+    }
 
     h2{
       text-align: center;

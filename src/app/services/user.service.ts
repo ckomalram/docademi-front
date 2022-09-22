@@ -19,7 +19,6 @@ export class UserService {
 
   async init() {
     await this.storage.create();
-    // console.log('instancia creada');
   };
 
   login(dataForm: LoginForm) {
@@ -31,14 +30,9 @@ export class UserService {
           console.log(resp);
           //Guardar Token
           await this.guardarToken(resp.token);
-
-          // console.log(this.storage.get('x-token'));
           resolve(true);
           // resolve(resp);
         }, error => {
-          // console.warn(error.error);
-          // console.warn(error.error.message);
-          // this.uiService.alertaInformativa(error.error.message);
           this.token = null;
           this.storage.clear();
           resolve(false);
@@ -49,6 +43,8 @@ export class UserService {
   async guardarToken(token: string) {
     this.token = token;
     await this.storage.set('x-token', this.token);
+
+    //TODO: validar endpoint /user para validar token.
     //  await  this.validaToken();
   }
 }

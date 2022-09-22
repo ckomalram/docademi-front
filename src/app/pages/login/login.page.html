@@ -11,62 +11,66 @@
       <div class="triangulor"></div>
     </div>
     <div class="boxregister" *ngIf="registerbtn">
-      <h2>Crear Cuenta</h2><hr>
-      <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" placeholder="ingrese nombre"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Apellido</ion-label>
-        <ion-input type="text" placeholder="ingrese apellido"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input type="text" placeholder="ingrese correo"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" placeholder="ingrese contraseña"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Celular</ion-label>
-        <ion-input type="text" placeholder="ingrese celular"></ion-input>
-      </ion-item>
+      <h2>Crear Cuenta</h2>
+      <hr>
 
-      <div class="btn_box">
-        <button type="submit" class="btn_submit">
-            Registrarse
-        </button>
-      </div>
-      <!-- <p>Registrate utilizando tus redes sociales</p>
-
-      <div class="social_login">
-          <div class="google">
-            <ion-icon name="logo-google"></ion-icon>
-          </div>
-      </div> -->
-    </div>
-    <div class="boxlogin" *ngIf="!registerbtn">
-      <h2>Login</h2><hr>
-
-      <form autocomplete="off" (ngSubmit)="login()" [formGroup]="loginForm"  id="loginform">
+      <form autocomplete="off" (ngSubmit)="register()" [formGroup]="registerForm" id="registerForm">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" placeholder="ingrese nombre completo" formControlName="name"></ion-input>
+        </ion-item>
         <ion-item>
           <ion-label position="floating">Correo</ion-label>
-          <ion-input type="email" name="email"
-          placeholder="Ingrese correo"
-          formControlName="email"
-          ></ion-input>
+          <ion-input type="email" placeholder="ingrese correo" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" placeholder="ingrese contraseña" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Repetir contraseña</ion-label>
+          <ion-input type="password" placeholder="Repita contraseña" formControlName="password2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Perfil</ion-label>
+          <ion-select placeholder="Seleccione perfil" formControlName="v_profile">
+            <ion-select-option value="docente">Docente</ion-select-option>
+            <ion-select-option value="estudiante">Estudiante</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <div class="btn_box">
+          <button type="submit" class="btn_submit">
+            Registrarse
+          </button>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col text-error-form">
+          <p *ngIf="campoNoValidoRegister('password')">* El password es Obligatorio</p>
+          <p *ngIf="campoNoValidoRegister('email')">* El email es Obligatorio y con formato valido. "example@example.ex"</p>
+          <p *ngIf="campoNoValidoRegister('name')">* El nombre es Obligatorio y minimo 4 caracteres</p>
+          <p *ngIf="campoNoValidoRegister('v_profile')">* El perfil es Obligatorio.</p>
+          <p *ngIf="passwordNoNalido()">* Las contraseñas deben ser iguales</p>
+        </div>
+      </div>
+    </div>
+    <div class="boxlogin" *ngIf="!registerbtn">
+      <h2>Login</h2>
+      <hr>
+
+      <form autocomplete="off" (ngSubmit)="login()" [formGroup]="loginForm" id="loginform">
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" name="email" placeholder="Ingrese correo" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input name="password"
-          type="password"
-          formControlName="password"
-           ></ion-input>
+          <ion-input name="password" type="password" formControlName="password"></ion-input>
         </ion-item>
-        <div class="btn_box" >
+        <div class="btn_box">
           <button type="submit" class="btn_submit" [disabled]="loginForm.invalid">
-              Ingresar
+            Ingresar
           </button>
         </div>
       </form>
@@ -76,36 +80,18 @@
           <p *ngIf="campoNoValido('email')">* El email es Obligatorio y con formato valido. "example@example.ex"</p>
         </div>
       </div>
-
-      <!-- <p>Ingresa utilizando alguna red social</p>
-
-      <div class="social_login">
-          <div class="facebook">
-            <ion-icon name="logo-facebook"></ion-icon>
-          </div>
-          <div class="google">
-            <ion-icon name="logo-google"></ion-icon>
-          </div>
-          <div class="insta">
-            <ion-icon name="logo-instagram"></ion-icon>
-          </div>
-      </div> -->
     </div>
 
     <div class="bottom">
-      <p  *ngIf="registerbtn">¿Ya tienes cuenta?</p>
-      <p  *ngIf="!registerbtn">¿Aún no tienes cuenta?</p>
+      <p *ngIf="registerbtn">¿Ya tienes cuenta?</p>
+      <p *ngIf="!registerbtn">¿Aún no tienes cuenta?</p>
       <div class="btn_bottom">
-        <button id="loginbtn"
-        *ngIf="registerbtn"
-        (click)="tootgleAction(false)" >
-            Iniciar Sesión
+        <button id="loginbtn" *ngIf="registerbtn" (click)="tootgleAction(false)">
+          Iniciar Sesión
         </button>
-      <button id="registerbtn"
-      *ngIf="!registerbtn"
-      (click)="tootgleAction(true)" >
+        <button id="registerbtn" *ngIf="!registerbtn" (click)="tootgleAction(true)">
           Registrarse
-      </button>
+        </button>
       </div>
     </div>
   </div>
