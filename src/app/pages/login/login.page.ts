@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AnimationController,Animation, IonSlides, NavController } from '@ionic/angular';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { LoginResponse, Usuario } from 'src/app/interfaces/interfaces';
 import { UserService } from '../../services/user.service';
+import { UiService } from '../../services/ui.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +35,9 @@ export class LoginPage implements OnInit {
   constructor(private navCtrl: NavController,
     private animationCtrl: AnimationController,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private uiservice: UiService,
+    private storage: Storage
     ) {
         this.loginForm= this.fb.group({
           email: [ '', [Validators.required, Validators.email]] ,
@@ -93,33 +97,24 @@ export class LoginPage implements OnInit {
   // }
   async login(){
 
-    // this.navCtrl.navigateRoot('/docente', {
-    //   animated: true
-    // });
     this.formSubmitted = true;
     if (this.loginForm.invalid) {
       return;
     }
 
-    const valido = await this.userService.login(this.loginForm.value);
-    console.log('Estado de login', valido);
+    const response = await this.userService.login(this.loginForm.value);
+    // const token = await this.storage.get('x-token')||null;
+    // console.log('Estado de login', response);
+    // this.uiservice.alertaInformativa(token);
 
-    // // const valido = await this.usuarioService.login(this.loginUser.email,this.loginUser.password);
-    // const valido = this.loginUser.profile;
-    // if (valido === 'admin') {
-    //   //navegar a tabs
-    //   this.navCtrl.navigateRoot('/docente', {
-    //     animated: true
-    //   });
-    // } else {
-    //   //mostrar mensaje de credenciales no validad.
-    //   // this.uiservice.alertaInformativa('Credenciales no validas.');
-    //   // console.log('Credenciales no validas.');
-    //   //Esta navgación solo es por demo. aun no se implementa middlewares.
-    //   this.navCtrl.navigateRoot('/docente', {
-    //     animated: true
-    //   });
-    // }
+    if (response) {
+      //navegar a tabs
+      this.navCtrl.navigateRoot('/docente', {
+        animated: true
+      });
+    }else {
+      this.uiservice.alertaInformativa('Credenciales no validas.');
+    }
 
   }
 
