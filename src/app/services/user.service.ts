@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage-angular';
 import { LoginForm, LoginResponse, RegisterForm, RegisterResponse } from '../interfaces/interfaces';
 import { UiService } from './ui.service';
+import { tap, map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { NavController } from '@ionic/angular';
 
 const API_URL = environment.apiUrl;
 @Injectable({
@@ -13,7 +16,8 @@ export class UserService {
 
   token: string = null;
 
-  constructor(private http: HttpClient, private uiService: UiService, private storage: Storage) {
+  constructor(private http: HttpClient, private uiService: UiService, private storage: Storage,
+    private navCtrl: NavController,) {
     this.init();
   }
 
@@ -68,9 +72,60 @@ export class UserService {
 
   async guardarToken(token: string) {
     this.token = token;
-    await this.storage.set('x-token', this.token);
+    console.log('Guardando Token...',this.token);
+    await this.storage.set('token', this.token);
 
     //TODO: validar endpoint /user para validar token.
     //  await  this.validaToken();
   }
+
+  async logout(){
+    console.log('Saliendo de la aplicación');
+    await this.storage.remove('token');
+    //console.log(this.storage.get('token'));
+
+    this.navCtrl.navigateRoot('/login', {animated: true});
+  }
+
+  async cargarToken(){
+    this.token = await this.storage.get('token') || null;
+  }
+
+
+  async validateToken(): Promise<boolean>{
+    await  this.cargarToken();
+
+    if (!this.token) {
+      this.navCtrl.navigateRoot('/login', {animated: true});
+      return Promise.resolve(false);
+    }
+
+    return new Promise<boolean>(resolve => {
+      // const headers = new HttpHeaders({
+      //   'token': this.token
+      // });
+      resolve(true);
+      // this.http.get(`${API_URL}/api/user`, {headers}).subscribe(resp => {
+      //   if (resp.ok) {
+      //     this.usuario = resp.usuario;
+      //     resolve(true);
+      //   }else{
+      //     this.navcontroller.navigateRoot('/login');
+      //     resolve(false);
+      //   }
+      // });
+    });
+
+
+     //TODO: Integración con api para validar token
+  //   return this.http.get(`${API_URL}/api/user`, {
+  //     headers: {token}
+  //   }).pipe(
+  //     tap(async (resp: any) => {
+  //       await this.storage.set('token', resp.token);
+  //     }),
+  //     map(resp => true),
+  //     catchError(error =>  of(false))
+  //   );
+   }
 }

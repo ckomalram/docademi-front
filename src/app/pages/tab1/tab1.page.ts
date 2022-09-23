@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-tab1',
@@ -8,12 +9,10 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private userService: UserService) {}
 
   logout(){
-    console.log('Saliendo de la aplicación');
-    // debe ser llamado por un output event emmiter.
-    this.navCtrl.navigateRoot('/login', {animated: true});
+  this.userService.logout();
   }
 
 }

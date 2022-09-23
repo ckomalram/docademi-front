@@ -4,6 +4,7 @@ import { DetallesActividadComponent } from 'src/app/components/detalles-activida
 import { DocenteService } from 'src/app/services/docente.service';
 import { AgregarActividadComponent } from '../../components/agregar-actividad/agregar-actividad.component';
 import {PDFGenerator, PDFGeneratorOptions} from '@ionic-native/pdf-generator/ngx';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-admin-docente',
@@ -77,7 +78,8 @@ export class AdminDocentePage implements OnInit {
     private modalCtrl: ModalController,
   private docenteService: DocenteService,
   private loadingCtrl: LoadingController,
-  private pdfGenerator: PDFGenerator
+  private pdfGenerator: PDFGenerator,
+  private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -91,9 +93,7 @@ export class AdminDocentePage implements OnInit {
   }
 
   logout(){
-    console.log('Saliendo de la aplicación');
-    // debe ser llamado por un output event emmiter.
-    this.navCtrl.navigateRoot('/login', {animated: true});
+    this.userService.logout();
   }
 
 }
