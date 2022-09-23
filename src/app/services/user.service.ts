@@ -81,8 +81,20 @@ export class UserService {
 
   async logout(){
     console.log('Saliendo de la aplicación');
-    await this.storage.remove('token');
+    await this.cargarToken();
+    const token = this.token;
+    //TODO: LLamar api y validar que este ok.
+    this.http.get(`${API_URL}/api/logout`, {
+      headers: {token}
+    }).subscribe(async (resp) => {
+      console.log(resp);
+      await this.storage.remove('token');
+    }, async (error) => {
+      console.warn(error);
+      await this.storage.remove('token');
+    });
     //console.log(this.storage.get('token'));
+
 
     this.navCtrl.navigateRoot('/login', {animated: true});
   }
